@@ -3,7 +3,7 @@ package steps.opencircle;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.openCircle.OpenCircleLoginPage;
+import pages.openCirclebyAlex.OpenCircleLoginPage;
 import steps.CommonSteps;
 
 public class OpenCircleLoginSteps {
@@ -41,9 +41,9 @@ public class OpenCircleLoginSteps {
         loginPage.assertErrorMessagePresent(errorText);
     }
 
-    @Given("user credentials are {string} and {string}")
+    /*@Given("user credentials are {string} and {string}")
     public void userCredentialsAreAnd(String loginValue, String passwordValue) {
         steps.context.put("LOGIN", loginValue);
         steps.context.put("PASSWORD", passwordValue);
-    }
+    }*/
 }

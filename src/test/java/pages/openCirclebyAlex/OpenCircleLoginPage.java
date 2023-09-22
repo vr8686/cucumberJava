@@ -1,4 +1,4 @@
-package pages.openCircle;
+package pages.openCirclebyAlex;
 
 import pages.BasePage;
 
