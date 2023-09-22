@@ -1,6 +1,7 @@
 package steps;
 
 import hooks.Setup;
+import hooks.Wait;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -28,7 +29,9 @@ public class CommonSteps {
     public CommonSteps() {
         driver = Setup.driver;
         context = Setup.context;
+
         wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
+
     }
 
     @Given("open {string}")
@@ -112,8 +115,8 @@ public class CommonSteps {
 
     @And("wait for {string} is visible")
     public void waitForIsVisible(String target) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
-        wait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
+        webdriverWait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        webdriverWait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
     }
 
     @When("wait for {string} is visible for {int} millis")
@@ -125,14 +128,15 @@ public class CommonSteps {
 
     @Then("assert text {string} presented in {string}")
     public void assertTextPresentedIn(String text, String target) {
-        WebElement foundElement = wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        WebElement foundElement = webdriverWait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
         String elementText = foundElement.getText();
         String message = "Text \"" + text + "\" \nin " + target + " is not presented. \nActual text is \"" + elementText + "\"";
         assertTrue(message, elementText.contains(text));
     }
 
     @Then("assert element {string} present")
-    public void assertElementStringPresent(String target) {
+    public void assertElementPresent(String target) {
+        wait.forElementToBeDisplayed(10, getByObject(target), target);
         WebElement foundElement = driver.findElement(getByObject(target));
         assertTrue(foundElement.isDisplayed());
     }
@@ -203,6 +207,4 @@ public class CommonSteps {
             throw new RuntimeException(e);
         }
     }
-
-
 }
