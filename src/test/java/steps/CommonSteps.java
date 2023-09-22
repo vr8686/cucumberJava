@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.eo.Se;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -13,17 +14,20 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
 public class CommonSteps {
 
     private final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(25);
-    WebDriverWait wait;
+    public HashMap<String, Object> context;
+    public WebDriverWait wait;
     WebDriver driver;
 
     public CommonSteps() {
         driver = Setup.driver;
+        context = Setup.context;
         wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
     }
 
@@ -199,4 +203,6 @@ public class CommonSteps {
             throw new RuntimeException(e);
         }
     }
+
+
 }

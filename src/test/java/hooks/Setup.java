@@ -8,19 +8,23 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
+import java.util.HashMap;
 
 public class Setup {
 
     public static WebDriver driver;
+    public static HashMap<String, Object> context;
 
     @Before
     public void setWebDriver() {
         initBrowser();
+        context = new HashMap<>();
     }
+
 
     private void initBrowser() {
         String browser = System.getProperty("browser");
-        if (browser == null) browser = "firefox";
+        if (browser == null) browser = "chrome";
 
         switch (browser) {
             case "chrome":
@@ -37,6 +41,7 @@ public class Setup {
                 options.addArguments("--disable-extensions");
                 //options.addArguments("--headless");
                 driver = new ChromeDriver(options);
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                 break;
             case "firefox":
                 driver = new FirefoxDriver();
