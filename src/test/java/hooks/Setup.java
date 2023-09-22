@@ -21,9 +21,10 @@ public class Setup {
         context = new HashMap<>();
     }
 
+
     private void initBrowser() {
         String browser = System.getProperty("browser");
-        if (browser == null) browser = "firefox";
+        if (browser == null) browser = "chrome";
 
         switch (browser) {
             case "chrome":

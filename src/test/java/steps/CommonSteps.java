@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.eo.Se;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -22,15 +23,15 @@ public class CommonSteps {
 
     private final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(25);
     public HashMap<String, Object> context;
-    public WebDriverWait webdriverWait;
-    public Wait wait;
+    public WebDriverWait wait;
     WebDriver driver;
 
     public CommonSteps() {
         driver = Setup.driver;
         context = Setup.context;
-        webdriverWait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
-        wait = new Wait(driver);
+
+        wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
+
     }
 
     @Given("open {string}")
@@ -205,10 +206,5 @@ public class CommonSteps {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @And("wait until page is loaded")
-    public void waitUntilPageIsLoaded() {
-
     }
 }
