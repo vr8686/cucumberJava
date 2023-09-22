@@ -30,6 +30,6 @@ public class LTSecuritySettingsPage extends BasePage {
     }
 
     public void passwordChangeNotificationIsDisplayed() {
-        steps.assertElementPresent(PASSWORD_CHANGED_NOTIFICATION);
+        steps.assertElementStringPresent(PASSWORD_CHANGED_NOTIFICATION);
     }
 }

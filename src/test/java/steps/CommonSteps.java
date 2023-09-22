@@ -115,8 +115,8 @@ public class CommonSteps {
 
     @And("wait for {string} is visible")
     public void waitForIsVisible(String target) {
-        webdriverWait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
-        webdriverWait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        wait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
     }
 
     @When("wait for {string} is visible for {int} millis")
@@ -128,15 +128,14 @@ public class CommonSteps {
 
     @Then("assert text {string} presented in {string}")
     public void assertTextPresentedIn(String text, String target) {
-        WebElement foundElement = webdriverWait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        WebElement foundElement = wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
         String elementText = foundElement.getText();
         String message = "Text \"" + text + "\" \nin " + target + " is not presented. \nActual text is \"" + elementText + "\"";
         assertTrue(message, elementText.contains(text));
     }
 
     @Then("assert element {string} present")
-    public void assertElementPresent(String target) {
-        wait.forElementToBeDisplayed(10, getByObject(target), target);
+    public void assertElementStringPresent(String target) {
         WebElement foundElement = driver.findElement(getByObject(target));
         assertTrue(foundElement.isDisplayed());
     }

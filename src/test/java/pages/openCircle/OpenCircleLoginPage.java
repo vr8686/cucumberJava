@@ -31,11 +31,11 @@ public class OpenCircleLoginPage extends BasePage {
     }
 
     public void assertErrorMessageInvalidPassword() {
-        steps.assertElementPresent(INVALID_PASSWORD_MESSAGE);
+        steps.assertElementStringPresent(INVALID_PASSWORD_MESSAGE);
     }
 
     public void assertErrorMessagePresent(String errorMessageText) {
-        steps.assertElementPresent("xpath=//*[contains(.,'" + errorMessageText + "')]");
+        steps.assertElementStringPresent("xpath=//*[contains(.,'" + errorMessageText + "')]");
     }
 
     public String getTooShortErrorText() {

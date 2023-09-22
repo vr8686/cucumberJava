@@ -14,7 +14,6 @@ public class OpenCircleLoginSteps {
     @Given("user opens main page")
     public void userOpensMainPage() {
         loginPage.open();
-        steps.wait.forLoading(10);
     }
 
     @When("fills out form with invalid credentials")
